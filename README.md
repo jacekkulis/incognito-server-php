@@ -17,28 +17,27 @@ Give examples
 ### POST request format
 
 Send HTTP POST with format like:
-,,,
+```
 "keyName" : "value"
-,,,
-
+```
 We need few info send through post:<br />
 
 Identificator:
-,,,
+```
 "id" : "generated id"
-,,,
+```
 
 Info about client (who wants anything) for example:
-,,,
+```
 "client" : "raspberry"
 "client" : "android"
-,,,
+```
 
 Info about what client needs for example:
-,,,
+```
 "request" : "notification"
 "request" : "cameraPreview"
-,,,
+```
 
 It can be send with JSON format.
 

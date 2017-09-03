@@ -1,15 +1,3 @@
-
-About post files:
-
-post request format:
-"keyName" : "value" 
-######################
-"id" : "generate rand id"
-//who wants anything
-"client" : "raspberry" or "android"
-//what app or rasp need
-"request" : "notification" or "cameraPreview" or "screenshot"
-
 # IncognitoServer
 
 Study project POWER that includes Raspberry Pi, Android and PHP WebServer. <br />
@@ -28,14 +16,31 @@ Give examples
 
 ### POST request format
 
-"keyName" : "value" <br />
-//identificator<br />
-"id" : "generate rand id"<br />
-//who wants anything<br />
-"client" : "raspberry" or "android"<br />
-//what app or rasp need<br />
-"request" : "notification" or "cameraPreview" or "screenshot"<br />
+Send HTTP POST with format like:
+,,,
+"keyName" : "value"
+,,,
 
+We need few info send through post:<br />
+
+Identificator:
+,,,
+"id" : "generated id"
+,,,
+
+Info about client (who wants anything) for example:
+,,,
+"client" : "raspberry"
+"client" : "android"
+,,,
+
+Info about what client needs for example:
+,,,
+"request" : "notification"
+"request" : "cameraPreview"
+,,,
+
+It can be send with JSON format.
 
 ### Installing
 
@@ -43,15 +48,15 @@ A step by step series of examples that tell you have to get a development env ru
 
 Say what the step will be<br />
 
-```<br />
-Give the example<br />
-```<br />
+```
+Give the example
+```
 
-And repeat<br />
+And repeat
 
-```<br />
-until finished<br />
-```<br />
+```
+until finished
+```
 
 End with an example of getting some data out of the system or using it for a little demo
 

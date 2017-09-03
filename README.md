@@ -4,15 +4,43 @@ Study project POWER that includes Raspberry Pi, Android and PHP WebServer. <br /
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposeses on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Programs and frameworks needed to run this server
+```
+[XAMPP](https://www.apachefriends.org/download.html) - XAMPP for PHP 7.1.*
+```
 
 ```
-Give examples
+[Composer](https://getcomposer.org/) - composer to get needed libraries for PHP
 ```
+
+```
+*OPTIONALLY* [NetBeans for PHP](https://netbeans.org/kb/docs/php/quickstart.html) - IDE for PHP
+```
+
+
+### Installing
+
+Follow [this](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html#installConfigureXAMPP) steps to sucessfully install XAMPP pack <br />
+*OPTIONALLY* Follow [this](https://netbeans.org/kb/docs/php/quickstart.html) steps to install and configure Netbeans for PHP<br />
+
+Firstly start Apache and MySQL services through XAMPP Control Panel<br />
+
+Now clone repo to xampp/htdocs/ folder <br />
+```
+git clone https://github.com/jacekkulis/IncognitoServer
+```
+
+Open browser and check if server is accessible
+```
+Write url in browser: http://localhost/IncognitoServer
+```
+
+
+Server is now running and scripts can be accessed by Raspberry and Android
 
 ### POST request format
 
@@ -41,24 +69,6 @@ Info about what client needs for example:
 
 It can be send with JSON format.
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running<br />
-
-Say what the step will be<br />
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Deployment
 
 none for now
@@ -66,7 +76,8 @@ none for now
 ## Built With
 
 * [Composer](https://getcomposer.org/) - Dependency Manager for PHP<br />
-* [GuzzleHTTP](http://docs.guzzlephp.org/en/stable/) - PHP HTTP client
+* [GuzzleHTTP](http://docs.guzzlephp.org/en/stable/) - PHP HTTP client<br />
+* [XAMPP](https://www.apachefriends.org/download.html) - XAMPP WebServer
 
 ## License
 

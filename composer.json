@@ -1,0 +1,29 @@
+{
+    "name": "incognito/incognito-server",
+    "description": "This is server for project iSeeYou, that get POST and sends notifications to Android App or Raspberry Pi client.",
+    "version": "1.0.0-dev",
+    "type": "project",
+    "license": "MIT",
+    "keywords": ["PHP","FCM","Google","Firebase","Raspberry PI","Notifications","Android","Chrome"],
+    "homepage": "http://google.com",
+    "authors": [
+        {
+            "name": "Jacek",
+            "email": "jacek.jk.kulis@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ola",
+            "email": "ola@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "incognito\\PhpFirebaseCloudMessaging\\": "src/"
+        }
+    }
+}

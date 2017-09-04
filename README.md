@@ -9,38 +9,31 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Programs and frameworks needed to run this server
-```
-[XAMPP](https://www.apachefriends.org/download.html) - XAMPP for PHP 7.1.*
-```
-
-```
-[Composer](https://getcomposer.org/) - composer to get needed libraries for PHP
-```
-
-```
-*OPTIONALLY* [NetBeans for PHP](https://netbeans.org/kb/docs/php/quickstart.html) - IDE for PHP
-```
+* [XAMPP](https://www.apachefriends.org/download.html) - XAMPP WebServer for PHP 7.1.*<br />
+* [Composer](https://getcomposer.org/) - Dependency Manager for PHP
 
 
 ### Installing
 
-Follow [this](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html#installConfigureXAMPP) steps to sucessfully install XAMPP pack <br />
-*OPTIONALLY* Follow [this](https://netbeans.org/kb/docs/php/quickstart.html) steps to install and configure Netbeans for PHP<br />
-
-Firstly start Apache and MySQL services through XAMPP Control Panel<br />
-
-Now clone repo to xampp/htdocs/ folder <br />
+1. Follow [this](https://netbeans.org/kb/docs/php/configure-php-environment-windows.html#installConfigureXAMPP) steps to install XAMPP pack for **Windows**.<br />
+Follow [this](https://ubuntuforums.org/showthread.php?t=223410) steps to install XAMPP pack for **Linux**.<br />
+2. Start Apache and MySQL services through XAMPP Control Panel or console<br />
+3. Now clone repo to xampp/htdocs/ folder
 ```
 git clone https://github.com/jacekkulis/IncognitoServer
 ```
-
-Open browser and check if server is accessible
+4. Open browser and check if server is accessible
 ```
 Write url in browser: http://localhost/IncognitoServer
 ```
-
-
-Server is now running and scripts can be accessed by Raspberry and Android
+5. Install composer https://getcomposer.org/download/<br />
+6. Use composer download dependencies [link](https://getcomposer.org/doc/01-basic-usage.md) 
+```
+go to composer.json directory
+composer install
+composer update
+```
+7. Server is now setup and running,scripts can be accessed by Raspberry and Android.
 
 ### POST request format
 
@@ -71,13 +64,13 @@ It can be send with JSON format.
 
 ## Deployment
 
-none for now
+Access scripts from Android using local adress http://10.0.2.2/directory/scriptName.php.<br />
+From Raspberry Pi use 
 
 ## Built With
 
-* [Composer](https://getcomposer.org/) - Dependency Manager for PHP<br />
 * [GuzzleHTTP](http://docs.guzzlephp.org/en/stable/) - PHP HTTP client<br />
-* [XAMPP](https://www.apachefriends.org/download.html) - XAMPP WebServer
+* [name](link) - info
 
 ## License
 

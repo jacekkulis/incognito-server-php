@@ -13,7 +13,7 @@ class Configuration
      */
     public function __construct()
     {
-        $this->apiKey = DEFAULT_API_KEY;
+        $this->apiKey = self::DEFAULT_API_KEY;
         return $this;
     }
 
@@ -29,6 +29,10 @@ class Configuration
     {
         $this->apiKey = $apiKey;
         return $this;
+    }
+
+    public function setDefaultApiKey(){
+        $this->apiKey = self::DEFAULT_API_KEY;
     }
 
     public function getApiKey()

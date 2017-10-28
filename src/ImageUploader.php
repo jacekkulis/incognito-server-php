@@ -11,6 +11,8 @@ class ImageUploader
     private $imageFileType;
     private $fileSize;
 
+    private $uploaded;
+
     var $result;
 
 
@@ -25,12 +27,26 @@ class ImageUploader
      */
     function  __construct($file)  {
         $this->uploadOk = 1;
+        $this->uploaded = false;
         $this->fileHandler = $file;
         $this->target_dir = "uploads/";
         $this->target_file = $this->target_dir.basename($file["name"]);
         $this->imageFileType = pathinfo($this->target_file,PATHINFO_EXTENSION);
         $this->fileSize = $this->fileHandler["size"];
         $this->upload($file);
+    }
+
+    function getTargetFile(){
+        return $this->target_file;
+    }
+
+    function isUploaded(){
+        if ($this->uploaded){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 
@@ -72,6 +88,7 @@ class ImageUploader
             if (move_uploaded_file($this->fileHandler["tmp_name"], $this->target_file)) {
                 $this->result = "The file ". basename($this->fileHandler["name"]). " has been uploaded.";
                 $this->result = '<img src="uploads/'.$this->fileHandler["name"].'"/>';
+                $this->uploaded = true;
             } else {
                 $this->result = "Sorry, there was an error uploading your file.";
             }

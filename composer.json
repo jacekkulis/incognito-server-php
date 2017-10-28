@@ -23,7 +23,8 @@
     },
     "autoload": {
         "psr-4": {
-            "incognito\\PhpFirebaseCloudMessaging\\": "src/"
-        }
+            "incognito\\PhpFirebaseCloudMessaging\\": "src/",
+            "incognito\\": "src/"
+    }
     }
 }

@@ -1,21 +1,18 @@
 <?php
-require "vendor/autoload.php"; 
+require "vendor/autoload.php";
 
-use incognito\PhpFirebaseCloudMessaging\Message;
-use incognito\PhpFirebaseCloudMessaging\Notification;
-
-$config = include('Config/config.php');
+$config = new incognito\Config\Configuration();
 $client = new incognito\PhpFirebaseCloudMessaging\FCMClient();
-$client->setApiKey($config['apiKey']);
+$client->setApiKey($config->getApiKey());
 $client->injectGuzzleHttpClient(new \GuzzleHttp\Client());
 
 $topic = 'notifications';
 
-$message = new Message();
+$message = new incognito\PhpFirebaseCloudMessaging\Message();
 $message->setPriority('high');
 $message->addRecipient(new incognito\PhpFirebaseCloudMessaging\Recipient\Topic($topic));
 $message
-    ->setNotification(new Notification('Tutaj mamy tytul', 'heheheheheszky'))
+    ->setNotification(new incognito\PhpFirebaseCloudMessaging\Notification('Default title', 'Default Body Text'))
     ->setData(['key' => 'value'])
 ;
 

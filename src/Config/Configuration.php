@@ -23,7 +23,7 @@ class Configuration
      *
      * @param string $apiKey
      *
-     * @return \incognito\PhpFirebaseCloudMessaging\Configuration
+     * @return \incognito\Config\Configuration
      */
     public function setApiKey($apiKey)
     {

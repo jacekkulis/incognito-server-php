@@ -38,9 +38,9 @@
         if (!empty($_POST['title']) && !empty($_POST['text'])){
             require "vendor/autoload.php";
 
-            $config = include('src/Config/config.php');
+            $config = new incognito\Config\Configuration();
             $client = new incognito\PhpFirebaseCloudMessaging\FCMClient();
-            $client->setApiKey($config['apiKey']);
+            $client->setApiKey($config->getApiKey());
             $client->injectGuzzleHttpClient(new \GuzzleHttp\Client());
 
             $topic = 'notifications';

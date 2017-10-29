@@ -12,7 +12,7 @@
 </html>
 
 <?php
-require "../vendor/autoload.php";
+require "/storage/ssd5/051/3004051/public_html/IncognitoServer/vendor/autoload.php";
 if (isset($_POST['submitImage'])){
     if (isset($_FILES['data'])){
         $config = new incognito\Config\Configuration();
@@ -22,25 +22,10 @@ if (isset($_POST['submitImage'])){
             echo 'File uploaded';
             echo $image_uploader->result;
 
-            // send fcm with url
-            $config = new incognito\Config\Configuration();
-            $client = new incognito\PhpFirebaseCloudMessaging\FCMClient();
-            $client->setApiKey($config->getApiKey());
-            $client->injectGuzzleHttpClient(new \GuzzleHttp\Client());
-
-            $topic = 'notifications';
-
-            $message = new incognito\PhpFirebaseCloudMessaging\Message();
-            $message->setPriority('high');
-            $message->addRecipient(new incognito\PhpFirebaseCloudMessaging\Recipient\Topic($topic));
-            $message
-                ->setNotification(new incognito\PhpFirebaseCloudMessaging\Notification('Obtained picture', $image_uploader->getTargetFile()))
-                ->setData(['key' => 'value'])
-            ;
-
             try {
-                $response = $client->send($message);
-                echo 'Notification is sent successfully to topic "'.$topic. '". '.$response->getBody()->getContents();
+                $notification_sender = new \incognito\NotificationSender();
+                $response = $notification_sender->sendNotification('Obtained picture', $image_uploader->getTargetFile());
+                echo 'Notification is sent successfully to topic: '.$response->getBody()->getContents();
             } catch (Exception $ex) {
                 echo 'Error: ' .$ex->getMessage();
             }

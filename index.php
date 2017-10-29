@@ -34,29 +34,19 @@
 </div>
 
 <?php
+//on localhost
+require "vendor/autoload.php";
+//on webhost
+//require "/storage/ssd5/051/3004051/public_html/IncognitoServer/vendor/autoload.php";
+
     if (isset($_POST['sendNotification'])){
         if (!empty($_POST['title']) && !empty($_POST['text'])){
-            require "vendor/autoload.php";
-
-            $config = new incognito\Config\Configuration();
-            $client = new incognito\PhpFirebaseCloudMessaging\FCMClient();
-            $client->setApiKey($config->getApiKey());
-            $client->injectGuzzleHttpClient(new \GuzzleHttp\Client());
-
-            $topic = 'notifications';
-
-            $message = new incognito\PhpFirebaseCloudMessaging\Message();
-            $message->setPriority('high');
-            $message->addRecipient(new incognito\PhpFirebaseCloudMessaging\Recipient\Topic($topic));
-            $message
-                ->setNotification(new incognito\PhpFirebaseCloudMessaging\Notification($_POST['title'], $_POST['text']))
-                ->setData(['key' => 'value'])
-            ;
 
             echo '<div class="container-fluid bg-3 text-center">';
             try {
-                $response = $client->send($message);
-                echo 'Notification is sent successfully to topic "'.$topic. '". '.$response->getBody()->getContents();
+                $notification_sender = new \incognito\NotificationSender();
+                $response = $notification_sender->sendNotification($_POST['title'], $_POST['text']);
+                echo 'Notification is sent successfully: ". '.$response->getBody()->getContents();
             } catch (Exception $ex) {
                 echo 'Error: ' .$ex->getMessage();
             }
@@ -65,8 +55,10 @@
         else {
             echo '<div class="container-fluid bg-3 text-center">';
             echo 'Title or text was not set, sending custom notification'.'</br>';
-            $result = include 'src/Notify.php';
-            echo $result;
+
+            $notification_sender = new \incognito\NotificationSender();
+            $response = $notification_sender->sendNotification('default title', 'default body');
+            echo 'Notification is sent successfully: ". '.$response->getBody()->getContents();
             echo '</div>';
         }
     }

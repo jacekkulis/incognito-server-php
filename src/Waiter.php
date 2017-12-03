@@ -57,7 +57,10 @@ if (isset($_POST['client']) && isset($_POST['request'])) {
                         $response = $notification_sender->sendNotification('Obtained picture', $image_uploader->getTargetFile());
                         echo "</br>".'Notification is sent successfully to topic: '.$response->getBody()->getContents();
 
+                        fwrite($fp, json_encode('Notification is sent successfully to topic: '.$response->getBody()->getContents()));
+
                     } catch (Exception $ex) {
+                        fwrite($fp, json_encode($ex->getMessage()));
                         echo "</br>".'Error: ' .$ex->getMessage();
                     }
                 } else {

@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-Waiting for info from Andro or rasp... </ br>
-
-<form method="post" enctype="multipart/form-data">
-    Select image to upload: </br>
-
-    <input type="number" name="id" id="id"></br>
-    <input type="text" name="client" id="client"></br>
-    <input type="text" name="request" id="request"></br>
-
-    <input type="file" name="data" id="fileToUpload"></br>
-    <input type="submit" value="Upload Image" name="submitImage">
-</form>
-
-</body>
-</html>
 
 <?php
 /**
@@ -26,88 +7,77 @@ This is waiter script for Raspberry Pi. This script waits for POST informaton fr
 require "/storage/ssd5/051/3004051/public_html/IncognitoServer/vendor/autoload.php";
 //require "../vendor/autoload.php";
 
-if (isset( $_POST['id']) && isset($_POST['client']) && isset($_POST['request'])) {
+$fp = fopen("myPost.txt", "wb", FILE_APPEND);
 
-}
-else {
-    var_dump($_POST);
-    print_r(json_encode($_POST));
-    $fp = fopen("myPost.txt","wb");
+if (empty($_POST['client']) || empty($_POST['request'])) {
+    echo 'Some value is not set';
+    fwrite($fp, json_encode('Some value is not set'));
+} else {
+    echo "Everything set - processing request.";
+    fwrite($fp, json_encode("Everything set - processing request."));
     fwrite($fp, json_encode($_POST));
-    fclose($fp);
-    echo 'Var POST is not set!.';
 }
 
 $status = true;
 $client = "";
 $request = "";
 
-if (isset( $_POST['id']) && isset($_POST['client']) && isset($_POST['request'])){
+if (isset($_POST['client']) && isset($_POST['request'])) {
     $client = $_POST['client'];
     $request = $_POST['request'];
-    $fp = fopen("myPost.txt","wb");
 
-    if (strcmp($client, "android") == 0){
+    if (strcmp($client, "android") == 0) {
         fwrite($fp, json_encode("android"));
-        if (strcmp($request, "camera") == 0){
-
+        if (strcmp($request, "camera") == 0) {
+            fwrite($fp, json_encode("REQUEST: camera"));
             //send request to raspberry
             // File that contains info if raspberry wants image or not.
-            $raspFile = fopen("request.txt","wb");
+            $raspFile = fopen("request.txt", "wb");
             fwrite($raspFile, json_encode("true"));
             fclose($raspFile);
-
             fwrite($fp, json_encode("camera"));
-
         }
     }
 
     if (strcmp($client, "raspberry") == 0) {
         fwrite($fp, json_encode("raspberry"));
+        if (strcmp($request, "image") == 0) {
+            fwrite($fp, json_encode("REQUEST: image"));
 
-        if (strcmp($request, "image") == 0){
             // get image from raspberry
-            if (isset($_FILES['data'])){
+            if ($_FILES["picture"]["error"] == 0) {
                 $config = new incognito\Config\Configuration();
-                $image_uploader = new \incognito\ImageUploader($_FILES['data']);
+                $image_uploader = new \incognito\ImageUploader($_FILES['picture']);
 
-                if ($image_uploader->isUploaded()){
+                if ($image_uploader->isUploaded()) {
                     echo 'File uploaded';
-
+                    fwrite($fp, json_encode("file is uploaded"));
                     try {
                         $notification_sender = new \incognito\NotificationSender();
                         $response = $notification_sender->sendNotification('Obtained picture', $image_uploader->getTargetFile());
-                        echo 'Notification is sent successfully to topic: '.$response->getBody()->getContents();
+                        echo "</br>".'Notification is sent successfully to topic: '.$response->getBody()->getContents();
+
                     } catch (Exception $ex) {
-                        echo 'Error: ' .$ex->getMessage();
+                        echo "</br>".'Error: ' .$ex->getMessage();
                     }
-                }
-                else {
-                    echo 'Error, not uploaded.';
-                    echo $image_uploader->result;
+                } else {
+                    echo "</br>".'Error, not uploaded.';
+                    echo "</br>".$image_uploader->result;
+                    fwrite($fp, json_encode($image_uploader->result));
                 }
 
-            }
-            else {
-                echo 'File not set';
+            } else {
+                echo "</br>".'File not set';
+                fwrite($fp, json_encode('File not set'));
             }
 
             // image get - change true to false
-            $raspFile = fopen("request.txt","wb");
+            $raspFile = fopen("request.txt", "wb");
             fwrite($raspFile, json_encode("false"));
             fclose($raspFile);
-
-
-//            $notification_sender = new \incognito\NotificationSender();
-//            $notification_sender->sendNotification('Obtained picture', 'sample file');
-//            echo '<div>'.'Notification should be sent'.'</div>';
-
         }
     }
-
-
-
-    fclose($fp);
 }
 
+fclose($fp);
 ?>

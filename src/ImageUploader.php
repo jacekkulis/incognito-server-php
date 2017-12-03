@@ -72,7 +72,7 @@ class ImageUploader
             $this->uploadOk = 0;
         }
         // Check file size
-        if ($this->fileSize > 500000) {
+        if ($this->fileSize > 1000000) {
             $this->result = "Sorry, your file is too large.";
             $this->uploadOk = 0;
         }
@@ -85,7 +85,7 @@ class ImageUploader
 
         // Check if $uploadOk is set to 0 by an error
         if ($this->uploadOk == 0) {
-            $this->result = "Sorry, your file was not uploaded.";
+            return $this->result;
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($this->fileHandler["tmp_name"], $this->target_dir.$this->target_file)) {

@@ -79,7 +79,7 @@ class ImageUploader
 
         // Allow certain file formats
         if($this->imageFileType != "jpg" && $this->imageFileType != "png" && $this->imageFileType != "jpeg") {
-            $this->result = "Sorry, only JPG, JPEG & PNG files are allowed.";
+            $this->result = "Sorry, only JPG, JPEG & PNG files are allowed. File type: " . $this->imageFileType . " File name: " . basename($this->fileHandler["name"]);
             $this->uploadOk = 0;
         }
 

@@ -1,0 +1,207 @@
+body {
+  	font: 20px Montserrat, sans-serif;
+  	line-height: 1.8;
+  	color: #393939;
+	background: #474e5d;
+}
+
+
+
+.navbar {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border: 5px ;
+	border-radius: 0;
+	margin-bottom: 0;
+	font-size: 15px;
+	letter-spacing: 3px;
+}
+
+.navbar-nav  li a:hover {
+	color: #1abc9c !important;
+}
+
+#footer {
+	font-size: 10px;
+}
+
+.margin {
+	margin-bottom: 20px;
+	font-size: 70px;
+ 	color: white;
+}
+
+.bg-1 { 
+	background-color: #EE7500; /* orange */
+	color: white;
+}
+
+.bg-2 { 
+	background-color: #D69764; /* nut brown*/
+	color: white;
+}
+
+.bg-3 { 
+	background-color: #F1EDEA; /* almond */
+	color: black;
+}
+
+.bg-4 { 
+	background-color: #2f2f2f; /* Black Gray */
+	color: #fff;
+}
+
+.bg-5 {
+	background-color: #636363; /*  Gray */
+	color: white;
+}
+.bg-6 { 
+	background-color: #393D40; /*  slate */
+	color: #fff;
+}
+
+
+.row {
+	padding-left: 150px;
+	padding-right: 150px;
+}
+
+.container-fluid {
+	padding-top: 5px;
+	padding-bottom: 20px;
+}
+
+
+.bg-grey {
+    background-color: #CCCCCC;
+}
+
+.logo-small {
+    color: #FF6600;
+    font-size: 50px;
+}
+
+.logo {
+    color: #FF6600;
+    font-size: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+}
+
+
+/*LOGO-----------------*/
+
+/* 
+  Based from this article from Divya Manian - 
+  http://nimbupani.com/using-background-clip-for-text-with-css-fallback.html
+*/
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+:before,
+:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    position: relative;
+    margin: 0 auto 1em;
+    padding: 1em 1em .25em 1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.title:after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 240px;
+    height: 4px;
+    margin-left: -120px;
+    content: '';
+    background-color: #fff;
+}
+
+/* Clip text element */
+.clip-text {
+    font-size: 6em;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    display: inline-block;
+    margin: .25em;
+    padding: .5em .75em;
+    text-align: center;
+    /* Color fallback */
+    color: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.clip-text:before,
+.clip-text:after {
+    position: absolute;
+    content: '';
+}
+
+/* Background */
+.clip-text:before {
+    z-index: -2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+}
+
+/* Text Background (black zone) */
+.clip-text:after {
+    position: absolute;
+    z-index: -1;
+    top: .125em;
+    right: .125em;
+    bottom: .125em;
+    left: .125em;
+    background-color: #000;
+}
+
+/* Change the background position to display letter when the black zone isn't here */
+.clip-text--no-textzone:before {
+    background-position: -.65em 0;
+}
+
+.clip-text--no-textzone:after {
+    content: none;
+}
+
+/* Use Background-size cover for photo background and no-repeat background */
+.clip-text--cover,
+.clip-text--cover:before {
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+
+/* Background image from http://thepatternlibrary.com/ and http://lorempixel.com */
+.clip-text_one {
+    background-image: url('../images/logo1.jpg');
+}
+
+
+
